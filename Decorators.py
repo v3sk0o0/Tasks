@@ -34,10 +34,10 @@ def encrypt(argument):
     if type(argument) != int:
         raise TypeError("Expected integer as an argument")
     def real_decorator(function):
-         wrapper = function.__name__
          def wrapper():
             result = ("".join( [ cypher(char, argument % 26) for char in function() ]) )
             return result
+         wrapper.__name__ = function.__name__
          return wrapper
     return real_decorator
 
